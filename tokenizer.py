@@ -15,16 +15,12 @@ stop_words = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you"
 '''
 function to clean text: lowercase and remove punctuations
 '''
-def textCleaning(fileName): 
+def textTokenizing(fileName): 
     text = open(fileName, "r").read()
     text = " ".join(text.split())
     lowercasedText = text.lower()
     cleanedText = lowercasedText.translate(str.maketrans("", "", string.punctuation))
-
-    return cleanedText
-
-#textCleaning("first_test_data.txt")
-
-def tokenizing(cleanedText):
     tokenizedText = cleanedText.split()
+
     return tokenizedText
+
