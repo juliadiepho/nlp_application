@@ -24,3 +24,15 @@ def textTokenizing(fileName):
 
     return tokenizedText
 
+'''
+function to remove stop words from tokenized text
+'''
+def removeStops(tokenizedText):
+    finalText = []
+    for word in tokenizedText:
+        if word not in stop_words:
+            finalText.append(word)
+    
+    return finalText
+
+#print(removeStops(textTokenizing("first_test_data.txt")))
