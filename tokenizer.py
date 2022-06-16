@@ -9,6 +9,10 @@ def textCleaning(fileName):
     lowercasedText = text.lower()
     cleanedText = lowercasedText.translate(str.maketrans("", "", string.punctuation))
 
-    print(cleanedText)
+    return cleanedText
 
-textCleaning("first_test_data.txt")
+#textCleaning("first_test_data.txt")
+
+def tokenizing(cleanedText):
+    tokenizedText = cleanedText.split()
+    return tokenizedText
