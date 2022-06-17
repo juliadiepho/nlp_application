@@ -1,4 +1,5 @@
 import string
+import pandas as pd
 
 # stop words that can be removed
 stop_words = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself",
@@ -16,7 +17,8 @@ stop_words = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you"
 function to clean text: lowercase and remove punctuations
 '''
 def textTokenizing(fileName): 
-    text = open(fileName, "r").read()
+    data = pd.read_csv(fileName)
+    text = data['Content'][0]
     text = " ".join(text.split())
     lowercasedText = text.lower()
     cleanedText = lowercasedText.translate(str.maketrans("", "", string.punctuation))
@@ -35,4 +37,5 @@ def removeStops(tokenizedText):
     
     return finalText
 
-#print(removeStops(textTokenizing("first_test_data.txt")))
+
+print(removeStops(textTokenizing("test.csv")))
