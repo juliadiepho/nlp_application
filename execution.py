@@ -1,8 +1,8 @@
 from emotion_detector import emotion_detector
 from summarizer import summary_main
-from file_writer import fileWriter
+# from file_writer import fileWriter
 
-fileWriter("test.csv")
+# fileWriter("test.csv")
 text = summary_main("test.csv")
 emotion_label = emotion_detector(text)
 
