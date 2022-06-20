@@ -1,4 +1,3 @@
-
 from transformers import pipeline
 import pandas as pd
 
@@ -10,7 +9,7 @@ def extractingData(fileName):
         if data['Date'][i] == date:
             text = data['Content'][i]
             return text
-
+            
 def test_summarizer(text):
     
     summarizer = pipeline("summarization", model="t5-large")
@@ -22,7 +21,6 @@ def strSummary(summary):
     strSummary = summary[0]['summary_text']
     return strSummary
 
-
 def summary_main(fileName):
     text = extractingData(fileName)
     summarized = test_summarizer(text)
@@ -30,3 +28,5 @@ def summary_main(fileName):
 
     return summarized_final
 
+#print(summary_main("test.csv"))
+# print(extractingData("test.csv"))
