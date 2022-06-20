@@ -1,14 +1,15 @@
-
 from transformers import pipeline
 import pandas as pd
 
-
 def extractingData(fileName):
+    date = input("What is the date that you want to generate report on?: ")
     data = pd.read_csv(fileName)
-    text = data['Content'][0]
-
-    return text
-
+    for i in range(len(data)):
+        if data['Date'][i] == date:
+            text = data['Content'][i]
+            return text
+        # else:
+        #     return "You have no diaries for {}".format(date)
 def test_summarizer(text):
     
     summarizer = pipeline("summarization", model="t5-large")
@@ -20,7 +21,6 @@ def strSummary(summary):
     strSummary = summary[0]['summary_text']
     return strSummary
 
-
 def summary_main(fileName):
     text = extractingData(fileName)
     summarized = test_summarizer(text)
@@ -28,3 +28,5 @@ def summary_main(fileName):
 
     return summarized_final
 
+#print(summary_main("test.csv"))
+# print(extractingData("test.csv"))
