@@ -1,5 +1,3 @@
-from cgi import test
-from numpy import extract
 from transformers import pipeline
 import pandas as pd
 import nltk
@@ -18,7 +16,6 @@ from transformers import AutoTokenizer
 def extractingData(fileName):
     data = pd.read_csv(fileName)
     text = data['Content'][0]
-    return text
 
 def test_summarizer(text):
     
