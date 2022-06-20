@@ -1,7 +1,5 @@
-from tensorboard import summary
 from transformers import pipeline
 import pandas as pd
-import csv
 
 def extractingData(fileName):
     date = input("What is the date that you want to generate report on?: ")
@@ -15,9 +13,7 @@ def extractingData(fileName):
 def test_summarizer(text):
     
     summarizer = pipeline("summarization", model="t5-large")
-    # summaries = {}
     output = summarizer(text, max_length=512)
-    # summaries["t5"] = "\n".join(sent_tokenize(pipe_out[0]["summary_text"]))
 
     return output
 
