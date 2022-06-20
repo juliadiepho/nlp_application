@@ -11,13 +11,12 @@ def emotion_detector(text):
 
     return emotion_labels
 
-text = strSummary(test_summarizer(extractingData("test.csv")))
-print(emotion_detector(text))
+# text = strSummary(test_summarizer(extractingData("test.csv")))
+# print(emotion_detector(text))
+
 
 
 # prefix = "summarize: "
-
-
 # def preprocess_function(fileName):
 #     inputs = [prefix + doc for doc in fileName[0]]
 #     model_inputs = tokenizer(inputs, max_length=1024, truncation=True)
@@ -27,6 +26,5 @@ print(emotion_detector(text))
 
 #     model_inputs["labels"] = labels["input_ids"]
 #     return model_inputs
-
 # print(preprocess_function("test.csv"))
 

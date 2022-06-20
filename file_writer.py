@@ -1,13 +1,13 @@
 import csv
-import pandas as pd
+# import pandas as pd
 
 data_header = ["Date", "Content"]
 
 def askInput ():
     inputDate = input("The date that you want to write about [M D, Y]: ")
     inputContent = input("How was your day?: ")
-    
     data_content = [inputDate, inputContent]
+    
     return data_content
 
 def fileWriter (fileName):
