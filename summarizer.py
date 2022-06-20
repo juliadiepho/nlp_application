@@ -19,7 +19,6 @@ def strSummary(summary):
     strSummary = summary[0]['summary_text']
     return strSummary
 
-# print(summarizer(extractingData("test.csv")))
 
 def summary_main(fileName):
     text = extractingData(fileName)
