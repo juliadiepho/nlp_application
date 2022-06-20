@@ -1,3 +1,4 @@
+from typing import final
 from transformers import pipeline
 import pandas as pd
 # import nltk
@@ -20,15 +21,19 @@ def test_summarizer(text):
 
     return output
 
-def summarizer(text):
-    summarizer = pipeline("summarization")
-    outputs = summarizer(text, max_length=512, clean_up_tokenization_spaces=True)
-    return outputs
+# def summarizer(text):
+#     summarizer = pipeline("summarization")
+#     outputs = summarizer(text, max_length=512, clean_up_tokenization_spaces=True)
+#     return outputs
 
 
 def strSummary(summary):
     strSummary = summary[0]['summary_text']
     return strSummary
 
-# print(summarizer(extractingData("test.csv")))
-print(strSummary(test_summarizer(extractingData("test.csv"))))
+def summary_main(fileName):
+    text = extractingData(fileName)
+    summarized = test_summarizer(text)
+    final_summary = strSummary(summarized)
+
+    return final_summary
