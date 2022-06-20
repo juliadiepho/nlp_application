@@ -1,21 +1,15 @@
 from transformers import pipeline
 import pandas as pd
-import nltk
-from nltk.tokenize import sent_tokenize
-from transformers import AutoTokenizer
+# import nltk
+# from nltk.tokenize import sent_tokenize
+# from transformers import AutoTokenizer
 
-# # tokenizer = AutoTokenizer.from_pretrained("t5-small")
-# summarizer = pipeline("summarization", model="t5-large")
-# summaries = {}
-# data = pd.read_csv("test.csv")
-# text = data['Content'][0]
-# # pipe_out = summarizer(text)
-# # summaries["t5"] = "\n".join(sent_tokenize(pipe_out[0]["summary_text"]))
-# print(data)
 
 def extractingData(fileName):
     data = pd.read_csv(fileName)
     text = data['Content'][0]
+
+    return text
 
 def test_summarizer(text):
     
