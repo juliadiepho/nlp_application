@@ -20,10 +20,10 @@ def test_summarizer(text):
 
     return output
 
-def summarizer(text):
-    summarizer = pipeline("summarization")
-    outputs = summarizer(text, max_length=512, clean_up_tokenization_spaces=True)
-    return outputs
+# def summarizer(text):
+#     summarizer = pipeline("summarization")
+#     outputs = summarizer(text, max_length=512, clean_up_tokenization_spaces=True)
+#     return outputs
 
 
 def strSummary(summary):
@@ -31,4 +31,11 @@ def strSummary(summary):
     return strSummary
 
 # print(summarizer(extractingData("test.csv")))
-print(strSummary(test_summarizer(extractingData("test.csv"))))
+
+def summary_main(fileName):
+    text = extractingData(fileName)
+    summarized = test_summarizer(text)
+    summarized_final = strSummary(summarized)
+
+    return summarized_final
+
