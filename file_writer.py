@@ -22,4 +22,3 @@ def fileWriter (fileName):
             writer.writerow(askInput())
 
 fileWriter("test.csv")
-
