@@ -1,1 +1,1 @@
-# nlp_application
+# Digital Journal
