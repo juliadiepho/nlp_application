@@ -3,11 +3,13 @@ from transformers import pipeline
 import pandas as pd
 
 
-def extractingData(fileName):
+def extractingData(fileName):  
+    date = input("What is the date that you want to generate report on?: ")
     data = pd.read_csv(fileName)
-    text = data['Content'][0]
-
-    return text
+    for i in range(len(data)):
+        if data['Date'][i] == date:
+            text = data['Content'][i]
+            return text
 
 def test_summarizer(text):
     
