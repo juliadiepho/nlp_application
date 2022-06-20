@@ -10,10 +10,8 @@ def extractingData(fileName):
         if data['Date'][i] == date:
             text = data['Content'][i]
             return text
-        else:
-            return "You have no diaries for {}".format(date)
-
-
+        # else:
+        #     return "You have no diaries for {}".format(date)
 def test_summarizer(text):
     
     summarizer = pipeline("summarization", model="t5-large")
@@ -34,5 +32,5 @@ def summary_main(fileName):
 
     return summarized_final
 
-print(summary_main("test.csv"))
+# print(summary_main("test.csv"))
 # print(extractingData("test.csv"))
