@@ -13,7 +13,7 @@ def extractingData(fileName):
                 return text
     elif userInput == "w":
         data = pd.read_csv(fileName)
-        text = data['Content'][:7]
+        text = data['Content'][:6]
         return text
     else:
         return "Please enter a valid input [d/w]"
