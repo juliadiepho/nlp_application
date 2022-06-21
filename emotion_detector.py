@@ -11,8 +11,8 @@ def emotion_detector(text):
 
     return emotion_labels
 
-# text = strSummary(test_summarizer(extractingData("test.csv")))
-# print(emotion_detector(text))
+# text = strSummary(test_summarizer(extractingData("test.csv"))
+# print(emotion_detector(text))Date,Content
 
 
 
