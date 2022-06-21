@@ -3,13 +3,21 @@ import pandas as pd
 
 
 def extractingData(fileName):  
-    date = input("What is the date that you want to generate report on?: ")
-    data = pd.read_csv(fileName)
-    for i in range(len(data)):
-        if data['Date'][i] == date:
-            text = data['Content'][i]
-            return text
-            
+    userInput = input("Do you want to generate daily or weekly report? [d/w]: ")
+    if userInput == "d": 
+        date = input("What is the date that you want to generate report on?: ")
+        data = pd.read_csv(fileName)
+        for i in range(len(data)):
+            if data['Date'][i] == date:
+                text = data['Content'][i]
+                return text
+    elif userInput == "w":
+        data = pd.read_csv(fileName)
+        text = data['Content'][:7]
+        return text
+    else:
+        return "Please enter a valid input [d/w]"
+
 def test_summarizer(text):
     
     summarizer = pipeline("summarization", model="t5-large")
