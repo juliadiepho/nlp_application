@@ -1,10 +1,9 @@
+from matplotlib.pyplot import get
 from numpy import extract
 from transformers import pipeline
 from summarizer import test_summarizer, extractingData, strSummary
 import pandas as pd
 import nltk
-
-
 
 def daily_emotion_detector(text):
     emotion = pipeline("sentiment-analysis", model="arpanghoshal/EmoRoBERTa")
@@ -13,12 +12,13 @@ def daily_emotion_detector(text):
     return emotion_labels
 
 def weekly_emotion_detector(text):
-    emotion = pipeline("sentiment-analysis", model="arpanghoshal/EmoRoBERTa")
-    
-    return text.apply(emotion)
+    return text.apply(daily_emotion_detector)
 
-# text = strSummary(test_summarizer(extractingData("test.csv"))
-# print(emotion_detector(text))Date,Content
-# text = extractingData("test.csv")
-# print(text.apply(emotion))
+def get_emotion_label(text):
+    return daily_emotion_detector(text)[0]['label']
 
+def get_weekly_emotion(text):
+    return (text.apply(get_emotion_label))
+
+text = extractingData("test.csv")
+print(get_weekly_emotion(text))
