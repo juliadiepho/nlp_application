@@ -1,30 +1,27 @@
+from matplotlib.pyplot import get
 from numpy import extract
 from transformers import pipeline
-from summarizer import test_summarizer, extractingData, strSummary
+from summarizer import test_summarizer, extractingData, str_summary
 import pandas as pd
-import nltk
+# import nltk
 
-
-def emotion_detector(text):
+def daily_emotion_detector(text):
     emotion = pipeline("sentiment-analysis", model="arpanghoshal/EmoRoBERTa")
     emotion_labels = emotion(text)
 
     return emotion_labels
 
-# text = strSummary(test_summarizer(extractingData("test.csv"))
-# print(emotion_detector(text))Date,Content
+def weekly_emotion_detector(text):
+    return text.apply(daily_emotion_detector)
 
+def get_emotion_label(text):
+    return daily_emotion_detector(text)[0]['label']
 
+def get_daily_score(text):
+    return (daily_emotion_detector(text)[0]['score'])
 
-# prefix = "summarize: "
-# def preprocess_function(fileName):
-#     inputs = [prefix + doc for doc in fileName[0]]
-#     model_inputs = tokenizer(inputs, max_length=1024, truncation=True)
+def get_weekly_scores(text):
+    return (text.apply(get_daily_score))
 
-#     with tokenizer.as_target_tokenizer():
-#         labels = tokenizer(fileName["summary"], max_length=128, truncation=True)
-
-#     model_inputs["labels"] = labels["input_ids"]
-#     return model_inputs
-# print(preprocess_function("test.csv"))
-
+def get_weekly_emotion(text):
+    return (text.apply(get_emotion_label))
