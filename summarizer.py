@@ -13,7 +13,7 @@ def extractingData(fileName):
                 return text
     elif user_input == "w":
         data = pd.read_csv(fileName)
-        text = data['Content'][:7]
+        text = data['Content'][:6]
         return text
     else:
         return "Please enter a valid input [d/w]"
@@ -37,4 +37,4 @@ def summary_main(fileName):
     return summarized_final
 
 #print(summary_main("test.csv"))
-# print(extractingData("test.csv"))
+#print(extractingData("test.csv"))
