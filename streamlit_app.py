@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import csv
 
 st.title("Welcome to Digital Journal!")
@@ -8,8 +9,16 @@ def ask_input_diary():
     ask_file = st.radio("Do you want to create a new diary?", ["Yes", "No"])
     if ask_file == "Yes":
         file_name = st.text_input("Name of your new diary:")
+        with open("diary_storage.csv", "a") as file:
+            writer = csv.writer(file)
+            writer.writerow(file_name)
     else:
-        file_name = st.multiselect("Choose an existing diary", ["Diary_1", "Diary_2"])
+        diaries = pd.read_csv("diary_storage.csv")
+        diary_list = []
+        for i in range (len(diaries)):
+            diary_list.append(diaries["Diary Name"][i])
+
+        file_name = st.multiselect("Choose an existing diary", diary_list)
     
     cont = st.button('Continue')
     if cont == True:
