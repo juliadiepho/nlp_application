@@ -10,7 +10,7 @@ def ask_input ():
     
     return data_content
 
-def fileWriter (fileName):
+def file_writer (fileName):
     try:
         with open(fileName, "a") as file:
             writer = csv.writer(file)
@@ -21,4 +21,4 @@ def fileWriter (fileName):
             writer.writerow(data_header)
             writer.writerow(ask_input())
 
-fileWriter("test.csv")
+file_writer("test.csv")
