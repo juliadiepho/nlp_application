@@ -10,22 +10,23 @@ import matplotlib.pyplot as plt
 from file_writer import ask_input, ask_input_diary, file_writer
 from summarizer import extracting_data_summary, test_summarizer, str_summary
 from emotion_detector import get_daily_score, get_emotion_label, get_weekly_emotion, get_weekly_scores, extracting_data_emotion
+from visualization import weekly_visualization
 
 st.title("Welcome to Digital Journal!")
 st.markdown("This is where you can write your online dairy, get reports on how you feel daily and weekly, and get summarization of your day and week.")
 
-def weekly_visualization(file_name, text, emotion):
-    with open (file_name, "r") as csvfile:
-        data = pd.read_csv(file_name, delimiter=",")
-        # text = extractingData(file_name)
-        data['emotion'] = emotion
-        data['emotion score'] = get_weekly_scores(text)
-        fig = plt.figure(figsize=(9, 7))
-        visualization = sns.barplot(x = "emotion score", y = "emotion", data = data)
-        plt.title("Weekly Emotions")
+# def weekly_visualization(file_name, text, emotion):
+#     with open (file_name, "r") as csvfile:
+#         data = pd.read_csv(file_name, delimiter=",")
+#         # text = extractingData(file_name)
+#         data['emotion'] = emotion
+#         data['emotion score'] = get_weekly_scores(text)
+#         fig = plt.figure(figsize=(9, 7))
+#         visualization = sns.barplot(x = "emotion score", y = "emotion", data = data)
+#         plt.title("Weekly Emotions")
         
-        st.pyplot(fig)
-        # return visualization
+#         st.pyplot(fig)
+#         # return visualization
 
 ## MAIN FOR STREAMLIT APP
 
