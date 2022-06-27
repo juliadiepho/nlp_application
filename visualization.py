@@ -6,15 +6,19 @@ from emotion_detector import get_weekly_emotion, weekly_emotion_detector, get_we
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
+import streamlit as st
 
-def weekly_visualization(file_name):
+def weekly_visualization(file_name, text, emotion):
     with open (file_name, "r") as csvfile:
         data = pd.read_csv(file_name, delimiter=",")
-        text = extractingData(file_name)
-        data['emotion'] = get_weekly_emotion(text)
+        # text = extractingData(file_name)
+        data['emotion'] = emotion
         data['emotion score'] = get_weekly_scores(text)
+        fig = plt.figure(figsize=(9, 7))
         visualization = sns.barplot(x = "emotion score", y = "emotion", data = data)
+        plt.title("Weekly Emotions")
         
-        plt.show()
+        st.pyplot(fig)
+        # return visualization
 
 # weekly_visualization("test.csv")
