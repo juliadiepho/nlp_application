@@ -1,4 +1,5 @@
 # from matplotlib import dates
+from regex import F
 import streamlit as st
 import pandas as pd
 import csv
@@ -75,9 +76,6 @@ with st.expander("Summarization"):
 
 # Emotion Detector Expander
 with st.expander("Emotion Detector & Visualization"):
-    file_name = st.selectbox("Choose an existing diary", diary_list, key="emotion") 
-    option_input = st.radio("Do you want to generate daily or weekly emotion report?", ["Daily", "Weekly"], key="emotion") 
-    text = extracting_data_emotion(option_input, file_name)
 
     if "button_clicked" not in st.session_state:
         st.session_state.button_clicked = False
@@ -85,6 +83,12 @@ with st.expander("Emotion Detector & Visualization"):
     def callback():
         # Button was clicked
         st.session_state.button_clicked = True
+    
+    file_name = st.selectbox("Choose an existing diary", diary_list, key="emotion") 
+    option_input = st.radio("Do you want to generate daily or weekly emotion report?", ["Daily", "Weekly"], key="emotion") 
+    text = extracting_data_emotion(option_input, file_name)
+
+    
 
     if st.button("Generate Emotion Report", on_click=callback) or st.session_state.button_clicked:
         # st.session_state.count += 1
