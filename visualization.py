@@ -14,8 +14,7 @@ def weekly_visualization(file_name):
         data['emotion'] = get_weekly_emotion(text)
         data['emotion score'] = get_weekly_scores(text)
         visualization = sns.barplot(x = "emotion score", y = "emotion", data = data)
-        # print(data)
-        # sns.countplot(data = data, y = 'emotion').set_title('Emotion Distribution')
+        
         plt.show()
 
-weekly_visualization("test.csv")
+# weekly_visualization("test.csv")
