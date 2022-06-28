@@ -42,12 +42,11 @@ def file_writer (file_name, data_content, data_header):
         writer = csv.writer(file)
         if os.stat(file_name).st_size == 0:
             writer.writerow(data_header)
-            # writer.writerow(data_content)
+            writer.writerow(data_content)
         else:
            writer.writerow(data_content) 
-
-        writer = csv.writer(file)
-        writer.writerow(data_content)
+           writer = csv.writer(file)
+           writer.writerow(data_content)
     # except:
     #     with open(file_name, "w") as file:
     #         data_header = ["Date", "Content"]
