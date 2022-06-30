@@ -6,7 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from file_writer import ask_input, ask_input_diary, file_writer
 from summarizer import extracting_data_summary, test_summarizer, str_summary
-from emotion_detector import get_emotion_label, get_weekly_emotion, extracting_data_emotion, emotion_main
+from emotion_detector import get_emotion_label, get_weekly_emotion, extracting_data_emotion
 from weekly_visualization import weekly_visualization
 
 st.title("Welcome to Digital Journal!")
@@ -33,6 +33,7 @@ with st.expander("Record your day"):
 with st.expander("Summarization"):
 
     diaries = pd.read_csv("diary_storage.csv")
+    diaries = diaries.drop_duplicates(subset=['Diary Name'], ignore_index = True)
     diary_list = []
 
     for i in range (len(diaries)):
@@ -72,22 +73,27 @@ with st.expander("Emotion Detector & Visualization"):
     if st.button("Generate Emotion Report") or st.session_state.button_clicked:
 
         with st.spinner("Please wait..."):
-            emotion = emotion_main(option_input, text)
-            # if option_input == "Daily":
-            #     emotion = get_emotion_label(text)
-            #     st.success("Success!") 
-            #     st.write("Your dominant emotion of the day is:", emotion)
-            # else:
-            #     emotion = get_weekly_emotion(text)
-            #     st.success("Success!") 
-            #     st.write("Your emotions through out the week are:", emotion)
+            # emotion = emotion_main(option_input, text)
+            if option_input == "Daily":
+                emotion = get_emotion_label(text)
+                st.success("Success!") 
+                st.write("Your dominant emotion of the day is:", emotion)
+                st.balloons()
+            else:
+                emotion = get_weekly_emotion(text)
+                st.write("Your emotions throughout the week are:", emotion)
+                weekly_visualization(file_name, text, emotion)
+                st.success("Success!") 
+                st.balloons()
+                
+                # st.write("Your emotions through out the week are:", emotion)
 
-        if option_input == "Weekly":
-            vis_input = st.radio("Do you want to generate visualization of your week's emotions?", ["Yes", "No"])
-            cont_2 = st.button("Continue")  
-            callback()          
-            if cont_2:
-                if vis_input == "Yes":
-                    weekly_visualization(file_name, text, emotion)
-                else:
-                    st.write("Alright then!")
+        # if option_input == "Weekly":
+        #     vis_input = st.radio("Do you want to generate visualization of your week's emotions?", ["Yes", "No"])
+        #     cont_2 = st.button("Continue")  
+        #     callback()          
+        #     if cont_2:
+        #         if vis_input == "Yes":
+        #             weekly_visualization(file_name, text, emotion)
+        #         else:
+        #             st.write("Alright then!")
