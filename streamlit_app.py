@@ -19,15 +19,17 @@ with st.expander("Record your day"):
 # with st.container():
     file_name = ask_input_diary()
     # with st.container():
-    data_content = ask_input()
+    if file_name != "" and file_name != None:
+        data_content = ask_input(file_name)
+        if data_content != None:
+            done = st.button("Done")
+            data_header = ["Date", "Content"]
+            if done:
+                file_writer(file_name, data_content, data_header)
+                with st.spinner("Please wait..."):
+                    time.sleep(1)
+                st.success("Your day has been recorded!")
 
-    done = st.button("Done")
-    data_header = ["Date", "Content"]
-    if done:
-        file_writer(file_name, data_content, data_header)
-        with st.spinner("Please wait..."):
-            time.sleep(2)
-        st.success("Your day has been recorded!")
 
 # Summarization expander
 with st.expander("Summarization"):
