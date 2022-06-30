@@ -4,6 +4,7 @@ from transformers import pipeline
 from summarizer import test_summarizer, str_summary
 import pandas as pd
 import streamlit as st
+# from visualization import weekly_visualization
 # import nltk
 
 def extracting_data_emotion(user_input, file_name):  
@@ -23,7 +24,7 @@ def extracting_data_emotion(user_input, file_name):
 
     elif user_input == "Weekly":
         data = pd.read_csv(file_name)
-        text = data['Content'][:6]
+        text = data['Content'][:7]
         return text
 
 def daily_emotion_detector(text):
@@ -46,3 +47,16 @@ def get_weekly_scores(text):
 
 def get_weekly_emotion(text):
     return (text.apply(get_emotion_label))
+
+def emotion_main(option_input, text):
+    if option_input == "Daily":
+        emotion = get_emotion_label(text)
+        st.success("Success!") 
+        st.write("Your dominant emotion of the day is:", emotion)
+    else:
+        emotion = get_weekly_emotion(text)
+        st.success("Success!") 
+        st.write("Your emotions through out the week are:", emotion)
+
+    return emotion
+
