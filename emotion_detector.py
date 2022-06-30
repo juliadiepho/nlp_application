@@ -1,11 +1,9 @@
 from matplotlib.pyplot import get
 from numpy import extract
 from transformers import pipeline
-from summarizer import test_summarizer, str_summary
 import pandas as pd
 import streamlit as st
-# from visualization import weekly_visualization
-# import nltk
+# from weekly_visualization import weekly_visualization
 
 def extracting_data_emotion(user_input, file_name):  
     #user_input = st.radio("Do you want to generate daily or weekly summarization?", ["Daily", "Weekly"])
@@ -48,15 +46,14 @@ def get_weekly_scores(text):
 def get_weekly_emotion(text):
     return (text.apply(get_emotion_label))
 
-def emotion_main(option_input, text):
-    if option_input == "Daily":
-        emotion = get_emotion_label(text)
-        st.success("Success!") 
-        st.write("Your dominant emotion of the day is:", emotion)
-    else:
-        emotion = get_weekly_emotion(text)
-        st.success("Success!") 
-        st.write("Your emotions through out the week are:", emotion)
-
-    return emotion
+# def emotion_main(option_input, text, file_name):
+#     if option_input == "Daily":
+#         emotion = get_emotion_label(text)
+#         st.success("Success!") 
+#         st.write("Your dominant emotion of the day is:", emotion)
+#     else:
+#         emotion = get_weekly_emotion(text)
+#         weekly_visualization(file_name, text, emotion)
+#         st.success("Success!") 
+#     return emotion
 

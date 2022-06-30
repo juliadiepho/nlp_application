@@ -1,12 +1,12 @@
 # from numpy import extract
-from matplotlib.pyplot import get
-import seaborn as sns
-# from emotion_detector import extracting_data_emotion
-from emotion_detector import get_weekly_scores
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
+# from matplotlib.pyplot import get
+import seaborn as sns
+from emotion_detector import get_weekly_scores
+
 
 def weekly_visualization(file_name, text, emotion):
     with open (file_name, "r") as csvfile:
