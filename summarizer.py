@@ -36,7 +36,7 @@ def extracting_data_summary(user_input, file_name):
 
     elif user_input == "Weekly":
         data = pd.read_csv(file_name)
-        text = data['Content'][:6]
+        text = data['Content'][:7]
         return text
 
 def test_summarizer(text):
