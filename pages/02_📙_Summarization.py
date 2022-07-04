@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 from summarizer import extracting_data_summary, test_summarizer, str_summary
 
 st.set_page_config (
