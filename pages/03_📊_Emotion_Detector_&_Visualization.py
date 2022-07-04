@@ -1,11 +1,7 @@
 import streamlit as st
 import pandas as pd
-import csv
-import time
-import seaborn as sns
-import matplotlib.pyplot as plt
-from emotion_detector import get_emotion_label, get_weekly_emotion, extracting_data_emotion
-from weekly_visualization import weekly_visualization
+from emotion_detector import get_emotion_label, get_weekly_emotion, extracting_data_emotion, daily_emotion_detector
+from weekly_visualization import weekly_visualization, daily_visualization
 
 st.set_page_config (
     page_title = "Emotion Detector & Visualization",
@@ -18,7 +14,6 @@ if "button_clicked" not in st.session_state:
     st.session_state.button_clicked = False
 
 def callback():
-    # Button was clicked
     st.session_state.button_clicked = True
 
 diaries = pd.read_csv("diary_storage.csv")
@@ -38,13 +33,16 @@ if st.button("Generate Emotion Report") or st.session_state.button_clicked:
     with st.spinner("Please wait..."):
         # emotion = emotion_main(option_input, text)
         if option_input == "Daily":
-            emotion = get_emotion_label(text)
+            emotions = daily_emotion_detector(text)
+            emotion = emotions[0]['label']
+            score = emotions[0]['score']
             st.success("Success!") 
-            st.write("Your dominant emotion of the day is:", emotion)
+            # st.write("Your dominant emotion of the day is:", emotion)
+            daily_visualization(emotion, score)
             st.balloons()
         else:
             emotion = get_weekly_emotion(text)
-            st.write("Your emotions throughout the week are:", emotion)
+            # st.write("Your emotions throughout the week are:", emotion)
             weekly_visualization(file_name, text, emotion)
             st.success("Success!") 
             st.balloons()
