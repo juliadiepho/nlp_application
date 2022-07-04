@@ -4,6 +4,7 @@ from regex import I
 import streamlit as st
 import pandas as pd
 import os
+import time
 
 data_header = ["Date", "Content"]
 
@@ -18,7 +19,6 @@ def ask_input(file_name):
     try: 
         diary = pd.read_csv(file_name)
         date_input = st.date_input("Enter a date")
-        st.write(date_input)
         date_input_str = str(date_input)
 
         dates = info_listing(file_name)
@@ -60,28 +60,38 @@ def ask_input_diary():
     ask_file = st.radio("Do you want to create a new diary?", ["Yes", "No"])
     if ask_file == "Yes":
         file_name = st.text_input("Name of your new diary:")
-        # new_file = [file_name]
-        # diary_list = info_listing("diary_storage.csv")
-        # if file_name != "":
-        #     if file_name not in diary_list:
-        #         with open("diary_storage.csv", "a") as file:
-        #             writer = csv.writer(file)
-        #             writer.writerow(new_file)
+        if file_name != "" and file_name != None:
+            new_file = [file_name]
+            diary_list = info_listing("diary_storage.csv")
+            if file_name not in diary_list:
+                data_content = ask_input(file_name)
+                data_header = ["Date", "Content"]
+                done = st.button("Done")
+                if done:
+                    file_writer(file_name, data_content, data_header)
+                    with st.spinner("Please wait..."):
+                        time.sleep(1)
+                    st.success("Your day has been recorded!")
                 
-        #         return file_name
-        #     else:
-        #         st.warning("{} already exists. Please choose a different name for your new diary.".format(file_name))
-        #         return None
-        if file_name == "":
-            st.error("Please enter a name for your new diary")
-            # return file_name
+                    with open("diary_storage.csv", "a") as file:
+                        writer = csv.writer(file)
+                        writer.writerow(new_file)
+            else: 
+                st.warning("{} already exists. Please choose a different name for your new diary.".format(file_name))
         else:
-            return file_name
-
+            st.error("Please enter a name for your diary")
     else:
         diary_list = info_listing("diary_storage.csv")
         file_name = st.selectbox("Choose an existing diary", diary_list)
-    
+        data_content = ask_input(file_name)
+        data_header = ["Date", "Content"]
+        done = st.button("Done")
+        if done:
+            file_writer(file_name, data_content, data_header)
+            with st.spinner("Please wait..."):
+                time.sleep(1)
+            st.success("Your day has been recorded!")
+        
         return file_name
 
 def file_writer (file_name, data_content, data_header):
