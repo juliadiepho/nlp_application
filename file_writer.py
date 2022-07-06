@@ -28,7 +28,8 @@ def ask_input(file_name):
             st.warning("You already have a record for {}.".format(date_input))
             for i in range(len(diary)):
                 if date_input_str == diary['Date'][i]:
-                    st.write("Here's what you have for {}:".format(date_input), diary['Content'][i])
+                    st.write("Here's what you have for {}:".format(date_input),diary['Content'][i])
+                    return None
         else:
             user_input = st.text_area("How was your day?",key="none-duplicate")
             data_content = [date_input, user_input]
@@ -85,14 +86,15 @@ def ask_input_diary():
         file_name = st.selectbox("Choose an existing diary", diary_list)
         data_content = ask_input(file_name)
         data_header = ["Date", "Content"]
-        done = st.button("Done")
-        if done:
-            file_writer(file_name, data_content, data_header)
-            with st.spinner("Please wait..."):
-                time.sleep(1)
-            st.success("Your day has been recorded!")
-        
-        return file_name
+        if data_content != None:
+            done = st.button("Done")
+            if done:
+                file_writer(file_name, data_content, data_header)
+                with st.spinner("Please wait..."):
+                    time.sleep(1)
+                st.success("Your day has been recorded!")
+            
+            return file_name
 
 def file_writer (file_name, data_content, data_header):
         with open(file_name, "a") as file:
