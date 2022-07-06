@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from emotion_detector import get_emotion_label, get_weekly_emotion, extracting_data_emotion, daily_emotion_detector
+from emotion_detector import get_emotion_label, get_weekly_emotion, extracting_data_emotion, daily_emotion_detector, weekly_emotion_detector
 from weekly_visualization import weekly_visualization, daily_visualization
 
 st.set_page_config (
@@ -41,8 +41,8 @@ if st.button("Generate Emotion Report") or st.session_state.button_clicked:
             daily_visualization(emotion, score)
             st.balloons()
         else:
-            emotion = get_weekly_emotion(text)
+            emotions = weekly_emotion_detector(text)
             # st.write("Your emotions throughout the week are:", emotion)
-            weekly_visualization(file_name, text, emotion)
+            weekly_visualization(file_name, emotions)
             st.success("Success!") 
             st.balloons()
