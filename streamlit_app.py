@@ -1,7 +1,9 @@
 import streamlit as st
 from PIL import Image
-st.title("Welcome to Digital Journal!")
-st.markdown("This is where you can write your online dairy, get reports on how you feel daily and weekly, and get summarization of your day and week.")
+st.title("Welcome to EmoJournal")
+st.subheader("What is EmoJournal?")
+st.markdown("EmoJournal is an online journal platform where you can record about your day. What makes it different from others is its ability to perform summarization and emotional analysis of your journal.")
+# st.markdown("This is where you can write your online dairy, get reports on how you feel daily and weekly, and get summarization of your day and week.")
 
 col1, col2, col3 = st.columns(3)
 
