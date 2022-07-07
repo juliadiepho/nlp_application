@@ -35,7 +35,6 @@ def test_summarizer(text):
     # import t5-large
     summarizer = pipeline("summarization", model="t5-large")
     output = summarizer(text, max_length=512)
-
     return output
 
 '''
