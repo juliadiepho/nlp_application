@@ -55,13 +55,18 @@ Daily emotion label getter
 def get_emotion_label(emotions):
     return emotions[0]['label']
 
+'''
+Weekly emotion labels getter
+@param extracted daily text
+@return emotion label as string
+'''
 def get_weekly_emotion_labels(emotions):
     return emotions.apply(get_emotion_label)
     
 '''
 Daily emotion score getter
 @param extracted daily text
-@
+@return 
 '''
 def get_daily_score(emotions):
     return (emotions[0]['score'])
