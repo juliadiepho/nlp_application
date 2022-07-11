@@ -1,0 +1,9 @@
+Library Requirements for this project:
+1) CSV
+2) Matplotlib
+3) Pandas
+4) PIL
+5) OS 
+6) Seaborn
+7) Streamlit
+8) Transformers

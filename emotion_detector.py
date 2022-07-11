@@ -1,9 +1,6 @@
-from matplotlib.pyplot import get
-from numpy import extract
 from transformers import pipeline
 import pandas as pd
 import streamlit as st
-# from weekly_visualization import weekly_visualization
 
 '''
 Is this the same with extracting_data from summarizer?
@@ -55,13 +52,18 @@ Daily emotion label getter
 def get_emotion_label(emotions):
     return emotions[0]['label']
 
+'''
+Weekly emotion labels getter
+@param extracted daily text
+@return emotion label as string
+'''
 def get_weekly_emotion_labels(emotions):
     return emotions.apply(get_emotion_label)
     
 '''
 Daily emotion score getter
 @param extracted daily text
-@
+@return 
 '''
 def get_daily_score(emotions):
     return (emotions[0]['score'])
