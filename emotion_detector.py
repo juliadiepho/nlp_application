@@ -1,9 +1,6 @@
-from matplotlib.pyplot import get
-from numpy import extract
 from transformers import pipeline
 import pandas as pd
 import streamlit as st
-# from weekly_visualization import weekly_visualization
 
 '''
 Is this the same with extracting_data from summarizer?
