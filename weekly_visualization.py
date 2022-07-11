@@ -4,7 +4,6 @@ import streamlit as st
 import seaborn as sns
 from emotion_detector import get_weekly_emotion_labels, get_weekly_scores
 from PIL import Image
-import operator
 
 '''
 Function to perform daily emotion visualization
