@@ -1,7 +1,7 @@
 # EmoJournal
 **EmoJournal** is an online diary web application built with Python and several Natural Language Processing (NLP) models. 
 
-![image](demo_img/home_page.png)
+![image](demo_img/new_home.png)
 It allows users to input diaries online and get insights of their days and weeks, including daily & weekly summarization and emotional visualization.
 
 ## Datasets
